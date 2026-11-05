@@ -3,6 +3,7 @@ export const selectableLocales = ["en", "zh-CN"] as const;
 export type SelectableLocale = (typeof selectableLocales)[number];
 
 const STORAGE_KEY = "paperclip.locale";
+const DEFAULT_PREFERENCE: SelectableLocale = import.meta.env?.VITE_DEFAULT_LOCALE === "zh-CN" ? "zh-CN" : "en";
 let memoryLocale: SelectableLocale | undefined;
 
 export function isSelectableLocale(value: unknown): value is SelectableLocale {
@@ -13,9 +14,9 @@ export function readLocalePreference(): SelectableLocale {
   if (memoryLocale) return memoryLocale;
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return isSelectableLocale(stored) ? stored : "en";
+    return isSelectableLocale(stored) ? stored : DEFAULT_PREFERENCE;
   } catch {
-    return "en";
+    return DEFAULT_PREFERENCE;
   }
 }
 

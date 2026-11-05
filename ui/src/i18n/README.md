@@ -1,7 +1,9 @@
 # Product UI localization
 
-Paperclip keeps English as its default UI language. Users can select English or
-Simplified Chinese from the account menu or the first-run/authentication UI. The
+This fork builds with Simplified Chinese as its default UI language through
+`ui/.env.production` (`VITE_DEFAULT_LOCALE=zh-CN`). Without that build setting,
+English remains the default. Existing explicit choices take priority. Users can
+select English or Simplified Chinese from the account menu or the first-run/authentication UI. The
 choice is stored under `paperclip.locale`. If browser storage is unavailable, the
 choice still applies to the current session. Switching does not reload the page.
 
